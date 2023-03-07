@@ -1,0 +1,22 @@
+.list {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 30px;
+}
+
+.btn {
+	background-color: rgb(203, 179, 226);
+	width: 90px;
+	height: 40px;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+}
+
+.icon {
+	fill: rgb(167, 57, 110);
+	width: 18px;
+	height: 18px;
+}
