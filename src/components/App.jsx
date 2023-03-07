@@ -11,22 +11,20 @@ class App extends Component {
     bad: 0,
   };
 
-  addGoodFeedback = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
-
-  addNeutralFeedback = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  addBadFeedback = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
+  addFeedback = type => {
+    if (type === 'GOOD') {
+      this.setState(prevState => ({
+        good: prevState.good + 1,
+      }));
+    } else if (type === 'NEUTRAL') {
+      this.setState(prevState => ({
+        neutral: prevState.neutral + 1,
+      }));
+    } else if (type === 'BAD') {
+      this.setState(prevState => ({
+        bad: prevState.bad + 1,
+      }));
+    }
   };
 
   //вычисляемые данные
@@ -52,9 +50,15 @@ class App extends Component {
       <div className="Feedback-section">
         <Section title="Please leave feedback">
           <Feedback
-            onGood={this.addGoodFeedback}
-            onNeutral={this.addNeutralFeedback}
-            onBad={this.addBadFeedback}
+            onGood={() => {
+              this.addFeedback('GOOD');
+            }}
+            onNeutral={() => {
+              this.addFeedback('NEUTRAL');
+            }}
+            onBad={() => {
+              this.addFeedback('BAD');
+            }}
           />
 
           {this.countTotalFeedback() > 0 ? (
