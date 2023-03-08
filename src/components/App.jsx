@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Feedback from './FeedbackOptions/FeedbackOptions';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistic from './Statictic/Statistic';
 import Section from './Section/Section';
 import NotificationMessage from './NotificationMessage/NotificationMessage';
@@ -12,21 +12,12 @@ class App extends Component {
     bad: 0,
   };
 
-  addFeedback = type => {
-    if (type === 'GOOD') {
-      this.setState(prevState => ({
-        good: prevState.good + 1,
+  onLeaveFeedback = option => {
+   this.setState(prevState => ({
+        [option]: prevState[option] + 1
       }));
-    } else if (type === 'NEUTRAL') {
-      this.setState(prevState => ({
-        neutral: prevState.neutral + 1,
-      }));
-    } else if (type === 'BAD') {
-      this.setState(prevState => ({
-        bad: prevState.bad + 1,
-      }));
-    }
   };
+
 
   //вычисляемые данные
   countTotalFeedback = () => {
@@ -50,17 +41,7 @@ class App extends Component {
     return (
       <div>
         <Section title="Please leave feedback">
-          <Feedback
-            onGood={() => {
-              this.addFeedback('GOOD');
-            }}
-            onNeutral={() => {
-              this.addFeedback('NEUTRAL');
-            }}
-            onBad={() => {
-              this.addFeedback('BAD');
-            }}
-          />
+          <FeedbackOptions options={['good', 'neutral', 'bad']} onClick={this.onLeaveFeedback}></FeedbackOptions>
 
           {this.countTotalFeedback() > 0 ? (
             <Statistic

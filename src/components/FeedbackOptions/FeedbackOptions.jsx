@@ -1,28 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import css from './FeedbackOptions.module.css';
-import { BsEmojiSmile, BsEmojiExpressionless, BsEmojiFrown } from "react-icons/bs";
 
-const Feedback = ({onGood, onNeutral, onBad}) => (
-  <>
+const FeedbackOptions = ({ options, onClick }) => (
     <ul className={css.list}>
-      <li className={css.item}>
-        <button className={css.btn} onClick={onGood}>Good <BsEmojiSmile className={css.icon} /></button>
-      </li>
-      <li className="feedback-list-item">
-        <button className={css.btn} onClick={onNeutral}>Neutral <BsEmojiExpressionless className={css.icon} /></button>
-      </li>
-      <li className="feedback-list-item">
-        <button className={css.btn} onClick={onBad}>Bad <BsEmojiFrown className={css.icon} /></button>
-      </li>
+
+		{options.map(( option ) => (
+			<li key={option} className={css.item} onClick={() => onClick(option)}>
+				<button className={css.btn}>{option}</button>
+			</li>
+		))}
     </ul>
-  </>
 );
 
-Feedback.propTypes = {
-	onGood: PropTypes.func.isRequired,
-	onNeutral: PropTypes.func.isRequired,
-	onBad: PropTypes.func.isRequired,
+FeedbackOptions.propTypes = {
+	options: PropTypes.array.isRequired,
+	onClick: PropTypes.func.isRequired,
  };
 
-export default Feedback;
+export default FeedbackOptions;
