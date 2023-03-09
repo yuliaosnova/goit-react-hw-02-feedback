@@ -3,7 +3,7 @@ import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistic from './Statictic/Statistic';
 import Section from './Section/Section';
 import NotificationMessage from './NotificationMessage/NotificationMessage';
-import css from './App.module.css';
+// import css from './App.module.css';
 
 class App extends Component {
   state = {
